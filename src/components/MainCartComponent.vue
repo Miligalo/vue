@@ -13,20 +13,20 @@
   </div>
   
   <div class="main-block">
-    <div v-if="store.state.lol == null" class="no-cart">
+    <div v-if="store.state.product.color == 0" class="no-cart">
       <div class="cart-img">
         <img src="public/img/nocartIcon.png">
       </div>
 
       <div class="message">
           <p>Ваша корзина пуста</p>
-        <div>{{store.state.lol}}</div>
+        <div></div>
       </div>
     </div>
 
-    <div>
-<!--      Количество: {{ store.state.lol.count}}-->
-<!--      Id цвета: {{store.state.lol.color}}-->
+    <div v-else>
+         Количество продукта: {{ store.state.product.count}}
+         Цвет продукта: {{store.state.product.color}}
     </div>
 
   </div>

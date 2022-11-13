@@ -66,8 +66,10 @@ function getColor(color_item){
   }
   function addToCard(){
   cart_item = product;
-    store.state.lol = cart_item
-    console.log(store.state.lol)
+    // store.state.lol = cart_item
+    // console.log(store.state.lol)
+    store.commit("setProduct", cart_item);
+    console.log(store.state.product.color)
   }
 
 
@@ -94,9 +96,6 @@ function getColor(color_item){
       </div>
       <div class="select-color">
         <button v-for="color in colors" @click="getColor(color)" v-bind:class="[color.is_active ? 'active' : '', color.color_class]"></button>
-<!--        <button  type="button" class="color-two"></button>-->
-<!--        <button class="color-three"></button>-->
-<!--        <button class="color-four"></button>-->
           <button class="reset" @click="reset()">reset</button>
       </div>
 
