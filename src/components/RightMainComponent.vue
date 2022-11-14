@@ -35,7 +35,7 @@ let store = useStore();
 
   function increment(){
      product.count++;
-    console.log(product)
+    // console.log(product)
   }
 
   function discriminant(){
@@ -66,10 +66,8 @@ function getColor(color_item){
   }
   function addToCard(){
   cart_item = product;
-    // store.state.lol = cart_item
-    // console.log(store.state.lol)
     store.commit("setProduct", cart_item);
-    console.log(store.state.product.color)
+    // console.log(store.state.product.color)
   }
 
 
