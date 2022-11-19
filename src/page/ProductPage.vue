@@ -15,10 +15,10 @@
 
 <script type="module">
 
-import HeaderComponent from "./HeaderComponent.vue";
-import WayComponent from "./WayComponent.vue";
-import LeftMainComponent from "./LeftMainComponent.vue";
-import RightMainComponent from "./RightMainComponent.vue";
+import HeaderComponent from "../components/HeaderComponent.vue";
+import WayComponent from "../components/WayComponent.vue";
+import LeftMainComponent from "../components/ImgProductComponent.vue";
+import RightMainComponent from "../components/InfoProductComponent.vue";
 export default {
   components: {RightMainComponent, LeftMainComponent, WayComponent, HeaderComponent}
 }

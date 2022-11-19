@@ -13,7 +13,7 @@
   </div>
   
   <div class="main-block">
-    <div v-if="store.state.product.color == 0" class="no-cart">
+    <div v-if="store.state.cart.length === 0 && store.state.jsonCart.length === 0" class="no-cart">
       <div class="cart-img">
         <img src="public/img/nocartIcon.png">
       </div>
@@ -24,18 +24,51 @@
       </div>
     </div>
 
-    <div v-else>
-         Количество продукта: {{ store.state.product.count}}
-         Цвет продукта: {{store.state.product.color}}
+    <div class="cart-item" v-else v-for="(product, index) in store.state.cart" :key="index">
+         <p>Название продукта: {{product.name}}</p>
+        <p>Цена: {{product.price * product.count}}</p>
+        <p> Количество продукта: {{ product.count}}</p>
+        <p> Цвет продукта: {{product.color}} </p>
+      <div class="btn_set">
+        <button class="cart_btn" @click="deleteItem(index)">
+        <span class="button-text">
+          удалить
+        </span>
+        </button>
+      </div>
+      <div>
+      </div>
     </div>
+    </div>
+  <div v-for="(good, key) in store.state.jsonCart" :key="key" v-if="store.state.jsonCart.length > 0">
+    <h5 v-if="good != null" class="main-owner">Овнер: {{key}}</h5>
+    <div class="left-text" v-for="product in good" >
+    </div>
+      <div class="cart-item" v-for="product in good">
+        <p>Название продукта: {{product.name}}</p>
+        <p>Цена: {{product.price}} </p>
+      </div>
+
+
+
 
   </div>
+
+
 </template>
 
 <script setup>
 import { useStore } from 'vuex'
+import {reactive} from "vue";
 
 let store = useStore();
+console.log(store.state.cart)
+console.log(store.state.jsonCart)
+function deleteItem(item){
+  store.commit("deleteItem", item);
+}
+
+
 
 </script>
 
@@ -61,6 +94,9 @@ let store = useStore();
     font-size: 25px;
     line-height: 21px;
   }
+  .main-owner{
+    text-align: center;
+  }
   .right-cart-block{
     width: 50%;
   }
@@ -78,6 +114,8 @@ let store = useStore();
   .main-block{
     width: 100%;
     margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .no-cart{
 
@@ -98,4 +136,33 @@ let store = useStore();
     color: #636363;
   }
 
+.button-text{
+  font-family: 'Poppins',sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+}
+.btn_set{
+  display: flex;
+  justify-content: center;
+}
+.cart_btn {
+  margin-top: 30px;
+  background: #FFDB95;
+  border: 5px;
+  border-radius: 5px;
+  padding: 5px 78px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.cart-item{
+  margin: 20px;
+  width: 40%;
+  text-align: center;
+}
 </style>

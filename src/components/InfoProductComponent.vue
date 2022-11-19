@@ -2,11 +2,18 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import {reactive} from "vue";
+import { useRoute } from 'vue-router'
+
+
+let route = useRoute
 
 let store = useStore();
+let good = store.state.goods[route().params.id - 1]
   let product = reactive({
     count: 0,
     color: '',
+    name: good.name,
+    price: good.price
   })
 
   let colors = reactive([
@@ -35,7 +42,6 @@ let store = useStore();
 
   function increment(){
      product.count++;
-    // console.log(product)
   }
 
   function discriminant(){
@@ -64,11 +70,15 @@ function getColor(color_item){
     product.color = '';
     product.count = 0;
   }
+
   function addToCard(){
-  cart_item = product;
-    store.commit("setProduct", cart_item);
-    // console.log(store.state.product.color)
+    cart_item = product;
+    store.commit("setProduct", product);
+    console.log(store.state.cart)
+
   }
+  let goods = store.state.goods
+
 
 
 </script>
@@ -77,10 +87,10 @@ function getColor(color_item){
 <template>
   <div class="block">
       <div class="main-title">
-        <h3>Half Daisy Dangles</h3>
+        <h3>{{good.name}}</h3>
       </div>
       <div class="second-title">
-        <h4>PKR 900</h4>
+        <h4>PKR {{good.price}}</h4>
       </div>
     <div class="main-info">
       <p>

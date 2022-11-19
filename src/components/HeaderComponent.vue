@@ -1,7 +1,8 @@
 
 
 <script setup>
-
+import { useStore } from 'vuex'
+let store = useStore();
 </script>
 
 
@@ -13,10 +14,14 @@
     <nav class="header-nav">
         <ul class="ul-header">
           <li>
-              <a href="#" class="header-link">Home</a>
+            <router-link to="/home" class="header-link">
+                Home
+            </router-link>
           </li>
           <li>
-            <a href="#" class="header-link">Products</a>
+            <router-link to="/product" class="header-link">
+              Products
+            </router-link>
           </li>
           <li>
             <a href="#" class="header-link">Care Instructions</a>
@@ -25,18 +30,18 @@
     </nav>
     <div class="right_header">
       <div class="item">
-        <img src="public/img/search.png">
+        <img src="../../public/img/search.png">
       </div>
       <router-link style="height: 24px" to="/cart">
       <div class="item">
-        <img src="public/img/shopping_bag.png">
+        <img src="../../public/img/shopping_bag.png">
         <div class="counter">
-          <span class="span_id">2</span>
+          <span class="span_id">{{store.state.cart.length}}</span>
         </div>
       </div>
       </router-link>
       <div class="item">
-        <img src="public/img/account_circle.png">
+        <img src="../../public/img/account_circle.png">
       </div>
     </div>
   </header>

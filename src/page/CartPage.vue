@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import HeaderComponent from "./HeaderComponent.vue";
-import MainCartComponent from "./MainCartComponent.vue";
+import HeaderComponent from "../components/HeaderComponent.vue";
+import MainCartComponent from "../components/MainCartComponent.vue";
 
 export default {
   name: "CartComponent",
