@@ -5,13 +5,15 @@
       "id": 11,
       "name": "Product 1",
       "price": 500,
-      "count": 1
+      "count": 1,
+      "color": ""
         },
       {
         "id": 21,
         "name": "Product 2",
         "price": 500,
-        "count": 1
+        "count": 1,
+        "color": ""
       }
     ]
   },
@@ -21,13 +23,15 @@
       "id": 12,
       "name": "Product 222",
       "price": 700,
-      "count": 1
+      "count": 1,
+      "color": ""
       },
       {
         "id": 13,
         "name": "Product 3",
         "price": 700,
-        "count": 1
+        "count": 1,
+        "color": ""
       }
     ]
 
@@ -38,13 +42,15 @@
       "id": 14,
       "name": "Product 5",
       "price": 2700,
-      "count": 1
+      "count": 1,
+      "color": ""
     },
       {
         "id": 15,
         "name": "Product 6",
         "price": 1700,
-        "count": 1
+        "count": 1,
+        "color": ""
       }
     ]
 
@@ -55,13 +61,15 @@
       "id": 16,
       "name": "Product 7",
       "price": 700,
-      "count": 1
+      "count": 1,
+      "color": ""
     },
       {
         "id": 17,
         "name": "Product 8",
         "price": 700,
-        "count": 1
+        "count": 1,
+        "color": ""
       }
     ]
 
@@ -72,13 +80,15 @@
       "id": 18,
       "name": "Product 9",
       "price": 700,
-      "count": 1
+      "count": 1,
+      "color": ""
     },
       {
         "id": 19,
         "name": "Product 10",
         "price": 700,
-        "count": 1
+        "count": 1,
+        "color": ""
       }
     ]
 

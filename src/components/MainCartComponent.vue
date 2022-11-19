@@ -40,6 +40,7 @@
       </div>
     </div>
     </div>
+  <div class="json-product">
   <div v-for="(good, key) in store.state.jsonCart" :key="key" v-if="store.state.jsonCart.length > 0">
     <h5 v-if="good != null" class="main-owner">Овнер: {{key}}</h5>
     <div class="left-text" v-for="product in good" >
@@ -47,8 +48,10 @@
       <div class="cart-item" v-for="product in good">
         <p>Название продукта: {{product.name}}</p>
         <p>Цена: {{product.price}} </p>
+        <p> Количество продукта: {{ product.count}}</p>
+        <p v-if="product.color"> Цвет продукта: {{product.color}} </p>
       </div>
-
+  </div>
 
 
 
@@ -79,6 +82,9 @@ function deleteItem(item){
     margin-left: 15px;
     margin-right: 35px;
     display: flex;
+  }
+  .json-product{
+
   }
   .left-cart-block{
     width: 50%;

@@ -54,7 +54,6 @@ let good = store.state.goods[route().params.id - 1]
   }
 
 let active_color = null;
-let cart_item = null;
 function getColor(color_item){
   product.color = color_item.id;
   if(active_color !== null){
@@ -72,7 +71,6 @@ function getColor(color_item){
   }
 
   function addToCard(){
-    cart_item = product;
     store.commit("setProduct", product);
     console.log(store.state.cart)
 
@@ -120,7 +118,7 @@ function getColor(color_item){
     </div>
     <div class="btn_set">
       <button class="cart_btn" :disabled="product.count === 0 || product.color === ''" @click="addToCard">
-        <span class="button-text">
+        <span class="button-text" >
           Add to cart
         </span>
       </button>

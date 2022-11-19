@@ -15,7 +15,7 @@
         </div>
     </div>
     <div  v-for="product in db">
-      <div class="product" v-for="good in product.product">
+      <div class="product test" v-for="good in product.product">
         <router-link :to="{name: 'jsonProduct', params:{owner: product.owner, id: good.id}, props: {name: good.name, id: good.id}}">
         <p>{{good.name}}</p>
         <p>{{good.price}}</p>
@@ -61,7 +61,9 @@ function addToJsonCart(data,owner){
   flex-wrap: wrap;
 
 }
-
+.test{
+  margin-left: 30px;
+}
 .product{
   height: 200px;
   width: 30%;

@@ -1,10 +1,10 @@
 <template>
-  <div class="block" v-for="good in goods">
+  <div class="block">
     <div class="main-title">
-      <h3>{{good.name}}</h3>
+      <h3>{{goods.name}}</h3>
     </div>
     <div class="second-title">
-      <h4>PKR {{good.price}}</h4>
+      <h4>PKR {{goods.price}}</h4>
     </div>
     <div class="main-info">
       <p>
@@ -17,8 +17,8 @@
         <h5>Colours</h5>
       </div>
       <div class="select-color">
-        <button></button>
-        <button class="reset">reset</button>
+        <button v-for="color in colors" @click="getColor(color)" v-bind:class="[color.is_active ? 'active' : '', color.color_class]"></button>
+        <button class="reset" @click="reset()">reset</button>
       </div>
 
     </div>
@@ -28,12 +28,12 @@
       </div>
       <form class='quantity' action='#'>
         <input @click="discriminant" type='button' value='-' class='qtyminus minus' field='quantity' />
-        <input type='text'  name='quantity'  class='qty' />
+        <input type='text'  name='quantity' v-bind:value="product.count" class='qty' />
         <input @click="increment" type='button' value='+' class='qtyplus plus' field='quantity' />
       </form>
     </div>
     <div class="btn_set">
-      <button class="cart_btn">
+      <button class="cart_btn" :disabled="product.count === 0 || product.color === ''" @click="addToJsonCart(product,owner.owner)">
         <span class="button-text">
           Add to cart
         </span>
@@ -46,19 +46,93 @@
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import db from "../../public/data.json"
+import {reactive} from "vue";
 
 let route = useRoute
 let store = useStore();
 
 let owner = db[route().params.owner - 1]
-let goods = []
+let goods = {
+  id: 0,
+  name: '',
+  price: 0,
+  color:1,
+}
 for (let i = 0; i < owner.product.length; i++){
   if(owner.product[i].id == route().params.id){
-    goods.push(owner.product[i])
+    // goods.push(owner.product[i])
+    goods.id = owner.product[i].id
+    goods.name = owner.product[i].name
+    goods.price = owner.product[i].price
+    goods.color = owner.product[i].color
   }
   else {
     continue
   }
+}
+
+let colors = reactive([
+  {
+    id: 1,
+    color_class: 'color-one',
+    is_active: false,
+  },
+  {
+    id: 2,
+    color_class: 'color-two',
+    is_active: false,
+  },
+  {
+    id: 3,
+    color_class: 'color-three',
+    is_active: false,
+  },
+  {
+    id: 4,
+    color_class: 'color-four',
+    is_active: false,
+  }
+
+])
+let product = reactive({
+  count: 0,
+  color: '',
+  name: goods.name,
+  price: goods.price
+})
+let active_color = null;
+function getColor(color_item){
+  product.color = color_item.id;
+  if(active_color !== null){
+    active_color.is_active = false
+  }
+  active_color = color_item
+
+  color_item.is_active = true
+}
+
+function increment(){
+  product.count++;
+}
+
+function discriminant(){
+  if (product.count == 0){
+    product.count
+  }
+  else {
+    product.count--
+  }
+}
+
+function reset() {
+  active_color.is_active = false;
+  product.color = '';
+  product.count = 0;
+}
+
+function addToJsonCart(data,owner){
+  store.commit("addToJsonCart", {data: data, owner:owner})
+  console.log(data, owner);
 }
 
 </script>
